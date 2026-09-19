@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <!-- إعدادات الـ Viewport لضمان توافقية الجوال ومنع التكبير/التصغير أثناء اللمس -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Neon Brick Breaker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- شريط التسويق والهوية (يتم التحكم بظهوره عبر الـ JavaScript) -->
+    <div id="promo-banner-container" class="hidden">
+        <p id="promo-text"></p>
+        <a id="promo-link" href="#" target="_blank" rel="noopener noreferrer"></a>
+        <button id="promo-close">&times;</button>
+    </div>
+
+    <!-- الحاوية الرئيسية للتطبيق -->
+    <div id="app-wrapper">
+        
+        <!-- 1. الشاشة الرئيسية -->
+        <div id="screen-main-menu" class="screen active">
+            <div class="title-container">
+                <h1 class="neon-text">NEON<br>BRICK BREAKER</h1>
+            </div>
+            <div class="menu-buttons">
+                <button id="btn-play-menu" class="btn primary-btn">العب الآن</button>
+                <button id="btn-reset-progress" class="btn danger-btn">إعادة ضبط التقدم</button>
+            </div>
+        </div>
+
+        <!-- 2. شاشة اختيار المرحلة -->
+        <div id="screen-level-select" class="screen hidden">
+            <h2 class="neon-text-small">اختر المرحلة</h2>
+            <!-- حاوية شبكة المراحل بناءً على العقد -->
+            <div id="level-select-grid"></div>
+            <button id="btn-back-menu" class="btn secondary-btn">العودة للقائمة</button>
+        </div>
+
+        <!-- 3. شاشة اللعب والـ Canvas -->
+        <div id="screen-game" class="screen hidden">
+            <!-- شريط المعلومات (HUD) -->
+            <div id="hud">
+                <div class="hud-item">المرحلة: <span id="hud-level" class="hud-value">1</span></div>
+                <div class="hud-item">النقاط: <span id="hud-score" class="hud-value">0</span></div>
+                <div class="hud-item">المحاولات: <span id="hud-lives" class="hud-value">3</span></div>
+                <!-- زر الإيقاف المؤقت بناءً على العقد -->
+                <button id="btn-pause" class="btn-icon">⏸️</button>
+            </div>
+            
+            <div id="canvas-wrapper">
+                <!-- عنصر الـ Canvas الأساسي للعبة -->
+                <canvas id="game-canvas"></canvas>
+                
+                <!-- طبقة البدء داخل اللعبة (لتفعيل الـ AudioContext والبدء) -->
+                <div id="ready-overlay" class="game-overlay">
+                    <button id="btn-start" class="btn action-btn">ابدأ اللعب!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. شاشة التوقف المؤقت -->
+        <div id="screen-pause" class="screen hidden popup-overlay">
+            <div class="popup-box">
+                <h2 class="neon-text-small">متوقف مؤقتاً</h2>
+                <button id="btn-resume" class="btn primary-btn">متابعة اللعب</button>
+                <button id="btn-exit-game" class="btn danger-btn">خروج للمراحل</button>
+            </div>
+        </div>
+
+        <!-- 5. شاشة النتيجة (فوز / خسارة) -->
+        <div id="screen-result" class="screen hidden popup-overlay">
+            <div class="popup-box">
+                <h2 id="result-title" class="neon-text-small">النتيجة</h2>
+                <div id="result-stars" class="stars-container">
+                    <!-- سيتم حقن النجوم برمجياً -->
+                </div>
+                <p class="score-text">النقاط: <span id="result-score">0</span></p>
+                <button id="btn-next-level" class="btn primary-btn hidden">المرحلة التالية</button>
+                <button id="btn-retry" class="btn secondary-btn">إعادة المحاولة</button>
+                <button id="btn-result-exit" class="btn danger-btn">القائمة الرئيسية</button>
+            </div>
+        </div>
+
+        <!-- 6. نافذة تأكيد مسح البيانات -->
+        <div id="screen-confirm-reset" class="screen hidden popup-overlay">
+            <div class="popup-box">
+                <h2 class="text-danger">تحذير!</h2>
+                <p>هل أنت متأكد من رغبتك في مسح جميع تقدمك والنجوم التي جمعتها؟ لا يمكن التراجع عن هذا الإجراء.</p>
+                <button id="btn-confirm-yes" class="btn danger-btn">نعم، امسح التقدم</button>
+                <button id="btn-confirm-no" class="btn secondary-btn">إلغاء</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- سيتم ربط ملف الـ JavaScript هنا -->
+    <script src="game.js"></script>
+</body>
+</html>
