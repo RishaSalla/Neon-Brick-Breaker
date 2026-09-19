@@ -1,0 +1,420 @@
+/* =========================================
+   المتغيرات الأساسية وألوان النيون
+   ========================================= */
+:root {
+    --bg-color: #050510;
+    --panel-bg: rgba(10, 10, 25, 0.9);
+    --neon-cyan: #00ffff;
+    --neon-pink: #ff00ff;
+    --neon-yellow: #ffff00;
+    --neon-green: #00ff00;
+    --neon-red: #ff3333;
+    --text-light: #ffffff;
+    --font-main: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* =========================================
+   إعادة الضبط الأساسية ومنع إيماءات اللمس
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* منع تحديد النصوص لتجربة شبيهة بالتطبيقات */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    color: var(--text-light);
+    font-family: var(--font-main);
+    overflow: hidden; /* منع التمرير نهائياً */
+    /* السطر الأهم لمنع السحب والإزاحة على الجوال */
+    touch-action: none; 
+}
+
+/* =========================================
+   الهيكل الرئيسي وحاويات الشاشات
+   ========================================= */
+#app-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.screen.active {
+    display: flex;
+    opacity: 1;
+}
+
+.screen.hidden, .hidden {
+    display: none !important;
+}
+
+/* =========================================
+   شريط التسويق (Promo Banner)
+   ========================================= */
+#promo-banner-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #110022, #330033);
+    border-bottom: 2px solid var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-pink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    z-index: 100;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#promo-text {
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--neon-pink);
+}
+
+#promo-link {
+    background-color: transparent;
+    color: var(--neon-cyan);
+    text-decoration: none;
+    border: 1px solid var(--neon-cyan);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    text-shadow: 0 0 5px var(--neon-cyan);
+    box-shadow: 0 0 5px var(--neon-cyan) inset, 0 0 5px var(--neon-cyan);
+    transition: all 0.2s;
+}
+
+#promo-link:hover {
+    background-color: var(--neon-cyan);
+    color: var(--bg-color);
+}
+
+#promo-close {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: auto;
+}
+
+/* =========================================
+   تأثيرات النصوص (Neon Typography)
+   ========================================= */
+.neon-text {
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    color: #fff;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px var(--neon-cyan),
+        0 0 40px var(--neon-cyan),
+        0 0 80px var(--neon-pink),
+        0 0 120px var(--neon-pink);
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.neon-text-small {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px var(--neon-pink),
+        0 0 20px var(--neon-pink);
+    margin-bottom: 1.5rem;
+}
+
+.text-danger {
+    color: #fff;
+    text-shadow: 0 0 10px var(--neon-red), 0 0 20px var(--neon-red);
+    margin-bottom: 1rem;
+}
+
+/* =========================================
+   الأزرار
+   ========================================= */
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 80%;
+    max-width: 300px;
+}
+
+.btn {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: inherit;
+    color: #fff;
+    background: transparent;
+    border: 2px solid;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.primary-btn {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 10px var(--neon-cyan) inset, 0 0 10px var(--neon-cyan);
+    text-shadow: 0 0 5px var(--neon-cyan);
+}
+.primary-btn:hover {
+    background-color: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 20px var(--neon-cyan) inset, 0 0 20px var(--neon-cyan);
+}
+
+.secondary-btn {
+    border-color: var(--neon-yellow);
+    box-shadow: 0 0 10px var(--neon-yellow) inset, 0 0 10px var(--neon-yellow);
+    text-shadow: 0 0 5px var(--neon-yellow);
+}
+.secondary-btn:hover {
+    background-color: rgba(255, 255, 0, 0.2);
+    box-shadow: 0 0 20px var(--neon-yellow) inset, 0 0 20px var(--neon-yellow);
+}
+
+.danger-btn {
+    border-color: var(--neon-red);
+    box-shadow: 0 0 10px var(--neon-red) inset, 0 0 10px var(--neon-red);
+    text-shadow: 0 0 5px var(--neon-red);
+}
+.danger-btn:hover {
+    background-color: rgba(255, 51, 51, 0.2);
+    box-shadow: 0 0 20px var(--neon-red) inset, 0 0 20px var(--neon-red);
+}
+
+.action-btn {
+    border-color: var(--neon-green);
+    box-shadow: 0 0 15px var(--neon-green) inset, 0 0 15px var(--neon-green);
+    background-color: rgba(0, 255, 0, 0.1);
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 15px var(--neon-green) inset, 0 0 15px var(--neon-green); }
+    100% { transform: scale(1.05); box-shadow: 0 0 25px var(--neon-green) inset, 0 0 30px var(--neon-green); }
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--neon-cyan);
+    cursor: pointer;
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* =========================================
+   شاشة اختيار المراحل (Level Select)
+   ========================================= */
+#level-select-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    width: 90%;
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+.level-btn {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 255, 255, 0.05);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 8px var(--neon-cyan);
+    transition: all 0.2s;
+}
+
+.level-btn:hover:not(.locked) {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 15px var(--neon-cyan) inset, 0 0 15px var(--neon-cyan);
+}
+
+.level-btn.locked {
+    border-color: #555;
+    color: #555;
+    background: transparent;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.level-stars {
+    display: flex;
+    gap: 2px;
+    margin-top: 5px;
+    font-size: 0.6rem;
+}
+
+.star {
+    color: #555;
+}
+.star.earned {
+    color: var(--neon-yellow);
+    text-shadow: 0 0 5px var(--neon-yellow);
+}
+
+/* =========================================
+   واجهة اللعب (HUD) والـ Canvas
+   ========================================= */
+#screen-game {
+    justify-content: flex-start;
+    padding-top: 10px; /* لترك مساحة إذا كان هناك شريط تسويق */
+}
+
+#hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    z-index: 20;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hud-value {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 8px var(--neon-cyan);
+    margin-right: 5px;
+}
+
+#canvas-wrapper {
+    position: relative;
+    flex-grow: 1;
+    width: 100%;
+    max-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    /* تأمين مساحة اللعبة بحيث تحافظ على نسبة 480x800 */
+}
+
+canvas {
+    background-color: #020205; /* لون خلفية منطقة اللعب */
+    border: 2px solid rgba(0, 255, 255, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    /* تحديد الحد الأقصى للأبعاد للحفاظ على نسبة العرض للارتفاع الافتراضية */
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: 480 / 800; 
+    object-fit: contain;
+    touch-action: none; /* تأكيد إضافي لمنع اللمس الافتراضي على الكانفاس */
+}
+
+.game-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 15;
+    border-radius: 8px;
+}
+
+/* =========================================
+   النوافذ المنبثقة (Popups)
+   ========================================= */
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    z-index: 50;
+}
+
+.popup-box {
+    background: var(--panel-bg);
+    border: 2px solid var(--neon-pink);
+    border-radius: 15px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    min-width: 300px;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.3), inset 0 0 20px rgba(255, 0, 255, 0.1);
+}
+
+.stars-container {
+    display: flex;
+    gap: 10px;
+    font-size: 3rem;
+    margin: 10px 0;
+}
+
+.score-text {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+#result-score {
+    color: var(--neon-cyan);
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* =========================================
+   التجاوب مع الشاشات الصغيرة (Media Queries)
+   ========================================= */
+@media (max-width: 480px) {
+    .neon-text { font-size: 2.2rem; }
+    .btn { padding: 10px 15px; font-size: 1rem; }
+    #level-select-grid { gap: 10px; }
+    .popup-box { padding: 20px; }
+}
